@@ -1,0 +1,87 @@
+Link for initializing projects on Java:
+https://start.spring.io/
+
+All basic knowledges form learning how to use Spring boot(framwork of Java) to configure our backend server:
+1/ Embedded Web Server and its configuring
+2/ API (using Mapping for working with DB)
+
+
+
+************************************About learning knowledges while working with Spring Boot*******************************
+Url of Springboot docs: https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#features
+
+1/ Lazy initialization:
+SpringApplication allows an application to be initialized lazily. When lazy initialization is enabled, beans are created as they are needed rather than during application startup. 
+As a result, enabling lazy initialization can reduce the time that it takes your application to start. In a web application, enabling lazy initialization will result in many web-related beans not being initialized until an HTTP request is received.
+Downside: delay the discovery of a problem with the application.For this reason lazy initialization is not enabled by default and it is recommended that fine-tuning of the JVM’s heap size is done before enabling lazy initialization.
+
+2/ JpaRepository: JpaRepository is an interface in Spring Data that provides methods for performing CRUD (Create, Read, Update, Delete) operations on entities in a database. It eliminates the need for boilerplate code that would otherwise be required to perform these operations manually. 
+By extending the JpaRepository interface, developers can easily perform database operations using Spring Data JPA.
+
+3/RestController and RequestMaping work for configuring like controllers in Nestjs
+
+4/record(introduced in Java 16) provides a concise way to declare classes that are primarily used to store data. A record is similar to a class, but with a reduced boilerplate syntax for declaring properties, constructors, and methods.
+
+5/
+@RequestBody will allow user to add data in request's boddy
+@PathVariable("name_of_param") will take param from request'url
+************************************Some problems encountering while coding Springboot with Java on VS Code****************
+"The type java.lang.Comparable cannot be resolved. It is indirectly referenced from required type java.lang.String": Reload/reopen the window
+
+************************************Appendix(Phụ lục)*****************************************************************
+     @GetMapping("/")
+    public GreetResponse greet() {
+    GreetResponse response = new GreetResponse(
+    "Hello World!",
+    List.of("Java", "Python", "C#", "JavaScript", "Typescript", "C++", "Golang",
+    "Ruby"),
+    new Person("Quyet Tran Vu"));
+    return response;
+    }
+
+    record Person(String name) {
+    }
+
+    record GreetResponse(
+    String greet,
+    List<String> favoriteProgrammingLanguages,
+    Person person) {
+    }
+
+    class GreetResponse {
+    private final String greet;
+
+    GreetResponse(String greet) {
+    this.greet = greet;
+    }
+
+    public String getGreet() {
+    return greet;
+    }
+
+    @Override
+    public String toString() {
+    return "GreetResponse{" + "greet='" + greet + '\'' + "}\'";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+    if (this == o)
+    return true;
+    if (o == null || getClass() != o.getClass())
+    return false;
+    GreetResponse that = (GreetResponse) o;
+    return Objects.equals(greet, that.greet);
+    }
+
+    @Override
+    public int hashCode() {
+    return Objects.hash(greet);
+    }
+    }
+
+    Whitelabel Error Page
+This application has no explicit mapping for /error, so you are seeing this as a fallback.
+
+Mon Aug 14 17:59:46 ICT 2023
+There was an unexpected error (type=Internal Server Error, status=500).
